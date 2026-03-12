@@ -9,8 +9,8 @@ function App() {
     <Routes>
       {/*viser forsiden når brukeren går til */}
       <Route path='/'element={Homepage />} />
-      {/* :movie er en dynasimsk route når du trykker på filmen basert på url */ }
-      <Route path='/:movie' element={Moviepage />} />
+      {/* :film er en dynasimsk route når du trykker på filmen basert på url */ }
+      <Route path='/:film' element={Moviepage />} />
     </Routes>
   )
 }
