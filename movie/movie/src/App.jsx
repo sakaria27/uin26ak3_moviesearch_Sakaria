@@ -5,7 +5,14 @@ import './App.css'
 
 function App() {
 
-  return
+  return(
+    <Routes>
+      {/*viser forsiden når brukeren går til */}
+      <Route path='/'element={Homepage />} />
+      {/* :movie er en dynasimsk route når du trykker på filmen basert på url */ }
+      <Route path='/:movie' element={Moviepage />} />
+    </Routes>
+  )
 }
 
 export default App
