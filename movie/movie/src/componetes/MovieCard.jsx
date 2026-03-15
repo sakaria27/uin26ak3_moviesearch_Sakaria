@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 
 function Moviecard ({movie}){
-    const slug = movie.Title.toLowercase().replaceAll('','-')
+    const slug = movie.Title.toLowerCase().replaceAll(' ', '-')
 
     return(
         <li>
             <article>
-                <link to={`/${slug}`} state={{imdbid: movie.imbd}}> 
+                <Link to={`/${slug}`} state={{imdbID: movie.imdbID}}> 
 
                 {movie.Poster !== 'N/A' && (
                     <img src={movie.Poster} alt={`Poster for ${movie.Title}`} />
@@ -16,7 +16,7 @@ function Moviecard ({movie}){
 
                 <h3>{movie.Title}</h3>
                 <p>{movie.Year}</p>
-                </link>
+                </Link>
             </article>
         </li>
     )
