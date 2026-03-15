@@ -6,7 +6,7 @@ const apikey = 'aef1a365'
 
 function HomePage() {
     const [movies, setMovies] = useState([])
-    const [searchText, setSearchText ] = useState([])
+    const [searchText, setSearchText ] = useState("")
     const [laster, setLaster] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
 
@@ -15,16 +15,15 @@ function HomePage() {
             setLaster(true)
 
             const query = searchText.length >= 3 ? searchText : "James Bond"
-            const response = await fetch(
-                https://www.omdbapi.com?apikey=${apikey}=${apikey}&s=${query}&type=movie)
+            const response = await fetch(`https://www.omdbapi.com?/apikey=${apikey}&s=${query}&type=movie`)
             
             const data = await response.json()
 
-            if (data.Response === 'true'){
-                if (searchText.length >=3 ){
-                    setMovies(data.Search.slice(0, 10))
+            if (data.Response === 'True'){
+                if (searchText.length >= 3 ){
+                    setMovies(data.Search)
                 } else {
-                    setMovies([])
+                    setMovies(data.Search.slice(0, 10))
                 }
                 setLaster (false)
             }
@@ -34,7 +33,7 @@ function HomePage() {
         if (searchText.length === 0 || searchText.length >= 3){
             fetchMovies()
         }
-    } [searchText])
+    }, [searchText])
 
     return(
         <main>
@@ -58,6 +57,6 @@ function HomePage() {
     )
      
 }
-console.log('søk', searchText)
+
 
 export default HomePage
