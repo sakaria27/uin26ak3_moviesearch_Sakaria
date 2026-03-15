@@ -5,7 +5,7 @@ const apikey = 'aef1a365'
 
 
 function HomePage() {
-    const [movieResults, setMovieResults] = useState([])
+    const [movies, setMovies] = useState([])
     const [searchText, setSearchText ] = useState([])
     const [laster, setLaster] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
@@ -21,11 +21,20 @@ function HomePage() {
             const data = await response.json()
 
             if (data.Response === 'true'){
-                if
+                if (searchText.length >=3 ){
+                    setMovies(data.Search.slice(0, 10))
+                } else {
+                    setMovies([])
+                }
+                setLaster (false)
             }
 
         }
-    })
+
+        if (searchText.length === 0 || searchText.length >= 3){
+            fetchMovies()
+        }
+    } [searchText])
 
     return(
         <main>
@@ -36,14 +45,19 @@ function HomePage() {
                 <h2>søk</h2>
                 <form>
                     <label htmlFor="search">Filmtittel</label>
-                    <input type="search" id="search" />
+                    <input type="search" id="search" value={searchText} 
+                    onChange={(event) => setSearchText(event.target.value)} />
                 </form>
+            </section>
+
+            <section>
+                <h2>Filmer</h2>
+                {laster ? (<p>Laster filmer...</p>) :(<MovieList movies={movies} />)}
             </section>
         </main>
     )
-    
-
-  
+     
 }
+console.log('søk', searchText)
 
 export default HomePage
