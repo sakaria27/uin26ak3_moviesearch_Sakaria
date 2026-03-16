@@ -15,7 +15,7 @@ function HomePage() {
             setLaster(true)
 
             const query = searchText.length >= 3 ? searchText : "James Bond"
-            const response = await fetch(`https://www.omdbapi.com?/apikey=${apikey}&s=${query}&type=movie`)
+            const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${query}&type=movie`)
             
             const data = await response.json()
 
@@ -25,9 +25,10 @@ function HomePage() {
                 } else {
                     setMovies(data.Search.slice(0, 10))
                 }
-                setLaster (false)
+            } else{
+                setMovies([])
             }
-
+             setLaster (false)
         }
 
         if (searchText.length === 0 || searchText.length >= 3){
@@ -57,6 +58,8 @@ function HomePage() {
     )
      
 }
+
+
 
 
 export default HomePage

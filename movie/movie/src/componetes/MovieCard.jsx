@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function Moviecard ({movie}){
+function MovieCard ({ movie }){
     const slug = movie.Title.toLowerCase().replaceAll(' ', '-')
 
     return(
@@ -22,4 +22,4 @@ function Moviecard ({movie}){
     )
 }
 
-export default Moviecard
+export default MovieCard

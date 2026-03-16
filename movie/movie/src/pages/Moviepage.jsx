@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const apikey = 'aef1a365'
 
-function Moviepage(){
+function MoviePage(){
     const location = useLocation()
     const imdbID = location.state?.imdbID
 
@@ -12,7 +12,7 @@ function Moviepage(){
 
     useEffect(() => {
         async function getMovie() {
-            const response = await fetch(`https://www.omdbapi.com?apikey=${apikey}&i=${imdbID}`)
+            const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${imdbID}`)
             
             const data = await response.json()
 
@@ -60,4 +60,4 @@ function Moviepage(){
     )
 }
 
-export default Moviepage
+export default MoviePage
