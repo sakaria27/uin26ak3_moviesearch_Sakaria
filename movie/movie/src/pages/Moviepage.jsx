@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react'
 const apikey = 'aef1a365'
 
 function MoviePage(){
+    //henter informajon fra moviecard
     const location = useLocation()
     const imdbID = location.state?.imdbID
 
     const [movie, setMovie] = useState(null)
     const [laster, setLaster] = useState(true)
-
+    
+    //kjøres når imdbID endres
     useEffect(() => {
         async function getMovie() {
+            //henter ombd api basert på imbdID
             const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${imdbID}`)
             
             const data = await response.json()
@@ -21,6 +24,7 @@ function MoviePage(){
             }
             setLaster(false)
         }
+        // kjører bare hvis imdbID finnes
         if (imdbID) {
             getMovie()
         }
@@ -34,12 +38,14 @@ function MoviePage(){
 
             {laster && <p>Laster film...</p>}
 
+            {/* viser filmen når data er lastet */}
             {!laster && movie && (
                 <article>
                     <header>
                         <h1>{movie.Title}</h1>
                         <p>{movie.Year}</p>
                     </header>
+                     {/* viser bilde bare hvis filmen har en poster */}
                     {movie.Poster !== 'N/A' &&(
                         <img src={movie.Poster} alt={`Poster for ${movie.Title}`} />
                     )}
